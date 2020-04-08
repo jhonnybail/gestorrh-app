@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "563455664016",
+    "firebase_url": "https://gestor-rh.firebaseio.com",
+    "project_id": "gestor-rh",
+    "storage_bucket": "gestor-rh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563455664016:android:bae8f9687a60667afe9d15",
+        "android_client_info": {
+          "package_name": "com.gestorrh.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "563455664016-18pb856ail7gdlpg67p2armp2v7f0e5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQnX8AvcS_DuxFyzA2b_qVzZZALo7oC4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "563455664016-18pb856ail7gdlpg67p2armp2v7f0e5a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,43 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
+    "lint": "eslint ./src/**/*.js"
+  },
+  "dependencies": {
+    "@react-native-community/masked-view": "^0.1.10",
+    "expo": "^36.0.0",
+    "pokeapi-js-wrapper": "^1.1.2",
+    "prop-types": "^15.7.2",
+    "react": "16.9.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz",
+    "react-native-animatable": "^1.3.3",
+    "react-native-dotenv": "^0.2.0",
+    "react-native-elements": "^1.2.7",
+    "react-native-gesture-handler": "~1.3.0",
+    "react-native-local-storage": "^1.5.2",
+    "react-native-masked-text": "^1.13.0",
+    "react-native-responsive-screen": "^1.3.0",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-screens": "^2.4.0",
+    "react-native-simple-dialogs": "^1.2.1",
+    "react-native-web": "^0.11.7",
+    "react-navigation": "^4.0.10",
+    "react-navigation-fluid-transitions": "^0.3.2",
+    "react-navigation-redux-helpers": "^4.0.1",
+    "react-navigation-stack": "^2.4.0",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "babel-preset-expo": "^7.0.0",
+    "eslint": "^6.5.1",
+    "eslint-plugin-react": "^7.16.0"
+  },
+  "private": true
+}

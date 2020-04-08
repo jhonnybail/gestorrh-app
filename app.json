@@ -1,0 +1,84 @@
+{
+  "expo": {
+    "name": "Gestor RH",
+    "slug": "gestor-rh",
+    "privacy": "public",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.1.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#001f4b"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "androidShowExponentNotificationInShellApp": true,
+    "notification": {
+      "icon": "./assets/icon-notification.png",
+      "color": "#001f4b",
+      "iosDisplayInForeground": true
+    },
+    "ios": {
+      "buildNumber": "0",
+      "supportsTablet": false,
+      "bundleIdentifier": "com.gestorrh.app"
+    },
+    "android": {
+      "package": "com.gestorrh.app",
+      "googleServicesFile": "./google-services.json",
+      "versionCode": 1110,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#001f4b"
+      },
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.gestorrh.app",
+      "permissions": [],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": {
+            "scheme": "com.gestorrh.app"
+          },
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        },
+        {
+          "action": "VIEW",
+          "data": {
+            "scheme": "http",
+            "host": "*.gestorrh.com",
+            "pathPrefix": "/api"
+          },
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        },
+        {
+          "action": "VIEW",
+          "data": {
+            "scheme": "https",
+            "host": "*.gestorrh.com",
+            "pathPrefix": "/api"
+          },
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
+    }
+  }
+}
