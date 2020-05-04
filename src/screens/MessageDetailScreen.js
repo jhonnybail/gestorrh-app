@@ -10,6 +10,8 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
         flexDirection: 'row',
         justifyContent: 'space-between',
+        paddingLeft: 20,
+        paddingRight: 20
     },
     text: {
         marginTop: 10,

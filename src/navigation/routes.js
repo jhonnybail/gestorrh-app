@@ -1,12 +1,14 @@
 import { createStackNavigator } from 'react-navigation-stack';
 
 import HomeScreen from '../screens/HomeScreen';
+import ResumeScreen from '../screens/ResumeScreen';
 import MessageDetailScreen from '../screens/MessageDetailScreen';
 import DocumentScreen from '../screens/auth/DocumentScreen';
 import ValidScreen from '../screens/auth/ValidScreen';
 
 const Routes = createStackNavigator({
     home: { screen: HomeScreen },
+    resume: { screen: ResumeScreen },
     document: { screen: DocumentScreen },
     authenticate: { screen: ValidScreen },
     messageDetail: { screen: MessageDetailScreen }
@@ -19,7 +21,6 @@ const Routes = createStackNavigator({
             height: 50,
             backgroundColor: '#001f4b',
             borderColor: '#001f4b',
-            borderBottom: 0,
             elevation: 1,
             shadowOpacity: 0,
             shadowColor: 'transparent',
@@ -28,8 +29,7 @@ const Routes = createStackNavigator({
         },
         headerForceInset: true,
         cardStyle: {
-            backgroundColor: '#001f4b',
-            padding: 20
+            backgroundColor: '#001f4b'
         }
     }
 });

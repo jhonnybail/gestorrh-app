@@ -11,7 +11,9 @@ import logoGestorRH from '../../../assets/logo-azul.jpg';
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        paddingLeft: 20,
+        paddingRight: 20
     },
     logo: {
         width: '100%',
@@ -122,9 +124,21 @@ class DocumentScreen extends React.Component {
         );
     };
 
-    render () {
+    componentDidMount() {
+        const { navigation } = this.props;
 
-        const { document } = this.state;
+        navigation.addListener('willFocus', e => {
+            if(e.action.params && e.action.params.document) 
+                this.setState({ document: e.action.params.document });
+        });
+        navigation.addListener('didBlur', () => {
+            this.setState({ document: '' })
+        });
+    }
+
+    render () {
+        let { document } = this.state;
+        const { navigation } = this.props;
         const animationTextInput = {
             0: {
                 width: '0%'
@@ -132,6 +146,10 @@ class DocumentScreen extends React.Component {
             1: {
                 width: '100%'
             }
+        }
+
+        if(document === '' && navigation.state.params && navigation.state.params.document) {
+            document = navigation.state.params.document
         }
 
         return (

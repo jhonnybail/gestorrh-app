@@ -1,5 +1,6 @@
 import { Alert } from 'react-native';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { NavigationActions } from 'react-navigation'
 import { navReducer, middleware } from './navigation';
 import { error as errorReducer } from './reducer/error';
 import { wait as waitReducer } from './reducer/wait';
@@ -25,6 +26,12 @@ const authMiddleware = store => next => async action => {
         case 'auth':
             await localStorage.save('user', JSON.stringify(action.user));
             await localStorage.save('company', JSON.stringify(action.company));
+        break
+        case 'signout':
+            await localStorage.remove(['user','company']);
+            store.dispatch(NavigationActions.navigate({ 
+                routeName: 'document'
+            }))
         break
     }
     next(action);

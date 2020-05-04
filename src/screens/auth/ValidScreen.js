@@ -10,7 +10,9 @@ import { TextInputMask } from 'react-native-masked-text';
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        paddingLeft: 20,
+        paddingRight: 20
     },
     logo: {
         width: 150,
@@ -163,14 +165,13 @@ class Valid extends React.Component {
     nextStep = () => {
         return this.props.navigation.dispatch(
             NavigationActions.navigate({ 
-                routeName: 'home'
+                routeName: 'resume'
             })
         );
     };
 
     render () {
-
-        const { colaborador, logo, loaded, date } = this.state;
+        const { colaborador, logo, loaded, date, document } = this.state;
         const animationTextInput = {
             0: {
                 width: '0%'
@@ -195,7 +196,7 @@ class Valid extends React.Component {
                                 <Button title="ACEPTAR" color="#62bfd4" onPress={this.handleAccept} />
                             </View>
                             <View style={styles.button}>
-                                <Button title="VOLVER" color="#F00" onPress={() => this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'document' }))} />
+                                <Button title="VOLVER" color="#F00" onPress={() => this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'document', params: { document } }))} />
                             </View>
                         </View>
                     :   <></>
