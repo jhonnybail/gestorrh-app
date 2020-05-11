@@ -8,7 +8,7 @@
       "android",
       "web"
     ],
-    "version": "1.1.2",
+    "version": "1.1.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -36,7 +36,7 @@
     "android": {
       "package": "com.gestorrh.app",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 1120,
+      "versionCode": 1140,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#001f4b"

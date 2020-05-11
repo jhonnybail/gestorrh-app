@@ -240,18 +240,22 @@ class ResumeScreen extends React.Component {
     }
 
     loadCollaboratorInfo = async user => {
-        const result = await fetch(user.foto);
-        const blob = await result.blob();
-        const fileReaderInstance = new FileReader();
-        
-        fileReaderInstance.readAsDataURL(blob); 
+        if(user.foto) {
+            const result = await fetch(user.foto);
+            const blob = await result.blob();
+            const fileReaderInstance = new FileReader();
+            
+            fileReaderInstance.readAsDataURL(blob); 
 
-        return new Promise(resolve => {
-            fileReaderInstance.onload = () => {
-                user.fotoData = fileReaderInstance.result;
-                resolve(user);
-            }
-        });
+            return new Promise(resolve => {
+                fileReaderInstance.onload = () => {
+                    user.fotoData = fileReaderInstance.result;
+                    resolve(user);
+                }
+            });
+        }
+
+        return user;
     }
 
     loadMessages = async () => {
@@ -310,10 +314,13 @@ class ResumeScreen extends React.Component {
                         <Animatable.View animation="fadeInDown" style={{...styles.card}}>
                             <View style={styles.container}>
                                 <View style={styles.viewImage}>
-                                    <Image 
-                                        resizeMode="contain" 
-                                        source={{uri: collaborator.fotoData}} 
-                                        style={styles.collaboratorImage} />
+                                    { collaborator.fotoData 
+                                        ?    <Image 
+                                                resizeMode="contain" 
+                                                source={{uri: collaborator.fotoData}} 
+                                                style={styles.collaboratorImage} />
+                                        : <></>
+                                    }
                                 </View>
                                 <View style={{...styles.viewInfo}}>
                                     <Text style={styles.name}>{collaborator.personales.nombre}</Text>
