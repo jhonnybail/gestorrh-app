@@ -18,7 +18,6 @@ const Routes = createStackNavigator({
     defaultNavigationOptions: {
         headerTintColor: '#FFF',
         headerStyle: {
-            height: 50,
             backgroundColor: '#001f4b',
             borderColor: '#001f4b',
             elevation: 1,

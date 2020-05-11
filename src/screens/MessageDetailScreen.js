@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import { Icon } from 'react-native-elements'
-import { NavigationActions } from 'react-navigation';
 
 const styles = StyleSheet.create({
     flex: {
@@ -15,7 +14,9 @@ const styles = StyleSheet.create({
     },
     text: {
         marginTop: 10,
-        color: '#FFF'
+        color: '#FFF',
+        paddingLeft: 20,
+        paddingRight: 20
     }
 });
 
