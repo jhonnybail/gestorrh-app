@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FlatList, Image, Platform, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { Dimensions, FlatList, Image, Platform, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { NavigationActions } from 'react-navigation'
+import { HeaderHeightContext } from 'react-navigation-stack';
 import localStorage from 'react-native-local-storage';
 import { Icon, Button } from 'react-native-elements';
 import { API_URL } from 'react-native-dotenv';
@@ -12,8 +13,9 @@ import * as Permissions from 'expo-permissions';
 
 const styles = StyleSheet.create({
     screen: {
+        width: '100%',
         paddingLeft: 20,
-        paddingRight: 20
+        paddingRight: 20  
     },
     card: {
         height: 150,
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
 
 class ResumeScreen extends React.Component {
 
-    static navigationOptions = ({navigation}) => {
+    static navigationOptions = ({navigation}) => {        
         return {
             headerShown: true,
             title: 'Resumen',
@@ -310,40 +312,49 @@ class ResumeScreen extends React.Component {
 
         return collaborator
             ?   (
-                    <View style={styles.screen}>
-                        <Animatable.View animation="fadeInDown" style={{...styles.card}}>
-                            <View style={styles.container}>
-                                <View style={styles.viewImage}>
-                                    { collaborator.fotoData 
-                                        ?    <Image 
-                                                resizeMode="contain" 
-                                                source={{uri: collaborator.fotoData}} 
-                                                style={styles.collaboratorImage} />
-                                        : <></>
-                                    }
-                                </View>
-                                <View style={{...styles.viewInfo}}>
-                                    <Text style={styles.name}>{collaborator.personales.nombre}</Text>
-                                    <Text style={styles.surname}>{collaborator.personales.apellido}</Text>
-                                    <Text style={{...styles.title, marginTop: 10}}>Unidad de Trabajo</Text>
-                                    <Text style={styles.option}>{collaborator.trabajo.unidadtrabajo.descripcion}</Text>
-                                </View>
+                    <HeaderHeightContext.Consumer>
+                    {headerHeight => (
+                        <View>
+                            <View style={{...styles.screen, height: Dimensions.get('window').height - 60 - headerHeight}}>
+                                <Animatable.View animation="fadeInDown" style={{...styles.card}}>
+                                    <View style={styles.container}>
+                                        <View style={styles.viewImage}>
+                                            { collaborator.fotoData 
+                                                ?    <Image 
+                                                        resizeMode="contain" 
+                                                        source={{uri: collaborator.fotoData}} 
+                                                        style={styles.collaboratorImage} />
+                                                : <></>
+                                            }
+                                        </View>
+                                        <View style={{...styles.viewInfo}}>
+                                            <Text style={styles.name}>{collaborator.personales.nombre}</Text>
+                                            <Text style={styles.surname}>{collaborator.personales.apellido}</Text>
+                                            <Text style={{...styles.title, marginTop: 10}}>Unidad de Trabajo</Text>
+                                            <Text style={styles.option}>{collaborator.trabajo.unidadtrabajo.descripcion}</Text>
+                                        </View>
+                                    </View>
+                                </Animatable.View>
+                                <Animatable.View style={styles.messageTitleBox} animation="fadeInUp">
+                                    <Icon
+                                        name='comment'
+                                        color='#FFF'
+                                        style={styles.messageIcon} />
+                                    <Text style={styles.messageText}>Mensajes</Text>
+                                </Animatable.View>
+                                <FlatList
+                                    contentContainerStyle={styles.list}
+                                    data={this.state.messages}
+                                    renderItem={({item}) => this.renderItem(item)}
+                                    keyExtractor={item => `${item.id}`}
+                                />
                             </View>
-                        </Animatable.View>
-                        <Animatable.View style={styles.messageTitleBox} animation="fadeInUp">
-                            <Icon
-                                name='comment'
-                                color='#FFF'
-                                style={styles.messageIcon} />
-                            <Text style={styles.messageText}>Mensajes</Text>
-                        </Animatable.View>
-                        <FlatList
-                            contentContainerStyle={styles.list}
-                            data={this.state.messages}
-                            renderItem={({item}) => this.renderItem(item)}
-                            keyExtractor={item => `${item.id}`}
-                        />
-                    </View>
+                            <View style={{ width: '100%', height: 60 }}>
+                                <Text style={{ textAlign: 'center', marginTop: 7, color: '#FFF' }}>un producto RH Empresa</Text>
+                            </View>
+                        </View>
+                    )}
+                    </HeaderHeightContext.Consumer>
                 )
             : (<></>)
     }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dimensions, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Alert, StyleSheet, View, TouchableWithoutFeedback, Button, Keyboard } from 'react-native';
@@ -8,9 +9,13 @@ import { API_URL } from 'react-native-dotenv';
 import { TextInputMask } from 'react-native-masked-text';
 
 const styles = StyleSheet.create({
+    containerTouch: {
+        width: '100%',
+        height: '100%'
+    },
     container: {
         width: '100%',
-        height: '100%',
+        height: Dimensions.get('window').height - 60,
         paddingLeft: 20,
         paddingRight: 20
     },
@@ -182,21 +187,26 @@ class Valid extends React.Component {
         }
 
         return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} style={styles.container}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} style={styles.containerTouch}>
                 { loaded
-                    ?   <View style={styles.container}>
-                            <Animatable.Text animation="fadeIn" delat={1000} style={styles.welcome}>¡Hola {colaborador.nombre}!</Animatable.Text>
-                            <Animatable.Text animation="fadeInUp" delay={500} style={styles.enter}>Actualmente estás en la empresa</Animatable.Text>
-                            <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                                <Animatable.Image resizeMode="contain" delay={1000} resizeMethod="scale" animation="fadeInUp" source={{uri: logo}} style={styles.logo} />
+                    ?   <View>
+                            <View style={styles.container}>
+                                <Animatable.Text animation="fadeIn" delat={1000} style={styles.welcome}>¡Hola {colaborador.nombre}!</Animatable.Text>
+                                <Animatable.Text animation="fadeInUp" delay={500} style={styles.enter}>Actualmente estás en la empresa</Animatable.Text>
+                                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                                    <Animatable.Image resizeMode="contain" delay={1000} resizeMethod="scale" animation="fadeInUp" source={{uri: logo}} style={styles.logo} />
+                                </View>
+                                <Animatable.Text animation="fadeInUp" delay={1000} style={styles.enter}>Ingrese su fecha de nacimiento</Animatable.Text>
+                                <TextInputAnimated type={'datetime'} options={{ format: 'DD/MM/YYYY' }} maxLength={10} style={styles.date} underlineColorAndroid='transparent' keyboardType='numeric' animation={animationTextInput} value={date} onChangeText={date => this.onChangeBirth(date)} />
+                                <View style={styles.button}>
+                                    <Button title="ACEPTAR" color="#62bfd4" onPress={this.handleAccept} />
+                                </View>
+                                <View style={styles.button}>
+                                    <Button title="VOLVER" color="#F00" onPress={() => this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'document', params: { document } }))} />
+                                </View>
                             </View>
-                            <Animatable.Text animation="fadeInUp" delay={1000} style={styles.enter}>Ingrese su fecha de nacimiento</Animatable.Text>
-                            <TextInputAnimated type={'datetime'} options={{ format: 'DD/MM/YYYY' }} maxLength={10} style={styles.date} underlineColorAndroid='transparent' keyboardType='numeric' animation={animationTextInput} value={date} onChangeText={date => this.onChangeBirth(date)} />
-                            <View style={styles.button}>
-                                <Button title="ACEPTAR" color="#62bfd4" onPress={this.handleAccept} />
-                            </View>
-                            <View style={styles.button}>
-                                <Button title="VOLVER" color="#F00" onPress={() => this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'document', params: { document } }))} />
+                            <View style={{ width: '100%', height: 60 }}>
+                                <Text style={{ textAlign: 'center', marginTop: 7, color: '#FFF' }}>un producto RH Empresa</Text>
                             </View>
                         </View>
                     :   <></>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dimensions, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Alert, StyleSheet, View, TouchableWithoutFeedback, Button, TextInput, Keyboard } from 'react-native';
@@ -9,9 +10,13 @@ import { API_URL } from 'react-native-dotenv'
 import logoGestorRH from '../../../assets/logo-azul.jpg';
 
 const styles = StyleSheet.create({
+    containerTouch: {
+        width: '100%',
+        height: '100%'
+    },
     container: {
         width: '100%',
-        height: '100%',
+        height: Dimensions.get('window').height - 60,
         paddingLeft: 20,
         paddingRight: 20
     },
@@ -153,15 +158,20 @@ class DocumentScreen extends React.Component {
         }
 
         return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} style={styles.container}>
-                <View style={styles.container}>
-                    <Animatable.Image resizeMode="contain" resizeMethod="scale" animation="slideInDown" source={logoGestorRH} style={styles.logo} />
-                    <Animatable.Text animation="fadeIn" delay={1000} style={styles.slogan}>Gestor de Recursos Humanos</Animatable.Text>
-                    <Animatable.Text animation="fadeIn" delay={1000} style={styles.welcome}>¡Bienvenido!</Animatable.Text>
-                    <Animatable.Text animation="fadeIn" delay={1000} style={styles.enter}>Para acceder informe su documento:</Animatable.Text>
-                    <TextInputAnimated ref="document" style={styles.document} underlineColorAndroid='transparent' keyboardType='numeric' animation={animationTextInput} value={document} onChangeText={text => this.onChangeDocument(text)} />
-                    <View style={styles.button}>
-                        <Button title="SEGUIR" style color="#62bfd4" onPress={this.handleAccept} />
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} style={styles.containerTouch}>
+                <View>
+                    <View style={styles.container}>
+                        <Animatable.Image resizeMode="contain" resizeMethod="scale" animation="slideInDown" source={logoGestorRH} style={styles.logo} />
+                        <Animatable.Text animation="fadeIn" delay={1000} style={styles.slogan}>Gestor de Recursos Humanos</Animatable.Text>
+                        <Animatable.Text animation="fadeIn" delay={1000} style={styles.welcome}>¡Bienvenido!</Animatable.Text>
+                        <Animatable.Text animation="fadeIn" delay={1000} style={styles.enter}>Para acceder informe su documento:</Animatable.Text>
+                        <TextInputAnimated ref="document" style={styles.document} underlineColorAndroid='transparent' keyboardType='numeric' animation={animationTextInput} value={document} onChangeText={text => this.onChangeDocument(text)} />
+                        <View style={styles.button}>
+                            <Button title="SEGUIR" style color="#62bfd4" onPress={this.handleAccept} />
+                        </View>
+                    </View>
+                    <View style={{ width: '100%', height: 60 }}>
+                        <Text style={{ textAlign: 'center', marginTop: 7, color: '#FFF' }}>un producto RH Empresa</Text>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
