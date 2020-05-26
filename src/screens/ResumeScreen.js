@@ -261,9 +261,9 @@ class ResumeScreen extends React.Component {
     }
 
     loadMessages = async () => {
-        const json = await localStorage.get('company');
-        const empresa = json ? JSON.parse(json) : null;
-        const result = await fetch(`${API_URL}empresa/${empresa.id}/mensajes`);
+        const json = await localStorage.get('user');
+        const collaborator = json ? JSON.parse(json) : null;
+        const result = await fetch(`${API_URL}colaborador/${collaborator.id}/mensajes`);
 
         return result.json();
     }
