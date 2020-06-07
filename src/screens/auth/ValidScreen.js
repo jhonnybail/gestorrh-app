@@ -122,26 +122,30 @@ class Valid extends React.Component {
     }
 
     authenticate = async (company, document, birthDate) => {
-        const fechaNascimento = `${birthDate.substr(6, 4)}-${birthDate.substr(3, 2)}-${birthDate.substr(0, 2)}`;
-        const response = await fetch(`${API_URL}autorizacion/${document}/autenticar`, {
-                                    method: 'post',
-                                    headers: {
-                                        'Accept': 'application/json',
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify({
-                                        empresa: company,
-                                        fechaNascimento
-                                    })
-                                });
+        try {
+            const fechaNascimento = `${birthDate.substr(6, 4)}-${birthDate.substr(3, 2)}-${birthDate.substr(0, 2)}`;
+            const response = await fetch(`${API_URL}autorizacion/${document}/autenticar`, {
+                                        method: 'post',
+                                        headers: {
+                                            'Accept': 'application/json',
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({
+                                            empresa: company,
+                                            fechaNascimento
+                                        })
+                                    });
 
-        if(response.status === 401){
-            const data = await response.json()
+            if(response.status === 401){
+                const data = await response.json()
 
-            throw new Error(data.message)
+                throw new Error(data.message)
+            }
+
+            return response.json()
+        } catch(e) {
+            console.log('Error autenticar fecha', e.message)
         }
-
-        return response.json()
     }
 
     handleAccept = async () => {

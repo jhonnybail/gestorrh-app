@@ -83,15 +83,19 @@ class DocumentScreen extends React.Component {
     }
 
     fetchEmpresa = async document => {
-        const response = await fetch(`${API_URL}autorizacion/${document}/comprobar`);
-        
-        if(response.status === 404){
-            const data = await response.json()
+        try {
+            const response = await fetch(`${API_URL}autorizacion/${document}/comprobar`);
+            
+            if(response.status === 404){
+                const data = await response.json()
 
-            throw new Error(data.message)
+                throw new Error(data.message)
+            }
+
+            return response.json()
+        } catch(e) {
+            console.log('Error comprobar document', e.message)
         }
-
-        return response.json()
     }
 
     handleAccept = async () => {

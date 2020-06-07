@@ -169,16 +169,18 @@ class ResumeScreen extends React.Component {
         
         const token = await Notifications.getExpoPushTokenAsync();
         
-        await fetch(`${API_URL}colaborador/${collaborator.id}/dispositivo`, {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                token
-            })
-        });
+        try {
+            await fetch(`${API_URL}colaborador/${collaborator.id}/dispositivo`, {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    token
+                })
+            });
+        } catch(e) { console.log(e) }
 
         if (Platform.OS === 'android') {
             Notifications.createChannelAndroidAsync('default', {

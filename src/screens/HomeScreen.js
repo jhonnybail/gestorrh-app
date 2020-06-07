@@ -31,10 +31,12 @@ class HomeScreen extends React.Component {
     }
 
     isValidCollaborator = async collaborator => {
-        const response = await fetch(`${API_URL}colaborador/${collaborator.id}`);
-        const json = await response.json()
+        try {
+            const response = await fetch(`${API_URL}colaborador/${collaborator.id}`);
+            const json = await response.json()
 
-        return json.trabajo.fechasalida === undefined;
+            return json.trabajo.fechasalida === undefined;
+        } catch(e) {}
     }
 
     render () {
